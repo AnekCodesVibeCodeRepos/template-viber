@@ -7,7 +7,7 @@ import { env } from "~/lib/env.server";
  * Tests database connection and environment configuration
  * GET /api/health
  */
-export async function loader({}: LoaderFunctionArgs) {
+export async function loader() {
   const startTime = Date.now();
 
   // Check if database is configured
