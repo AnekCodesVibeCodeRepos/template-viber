@@ -1,5 +1,55 @@
 # Backend API Guidelines for GitHub Copilot
 
+## Environment Variables & API Keys
+
+### ⚠️ CRITICAL RULE: Server-Side API Keys
+**ALL server-side API keys, secrets, and credentials MUST be stored in `.env` file**
+
+```env
+# .env file
+DATABASE_URL=postgresql://user:password@host:port/database
+SESSION_SECRET=your-secret-key-here
+OPENAI_API_KEY=sk-...
+STRIPE_SECRET_KEY=sk_test_...
+SENDGRID_API_KEY=SG...
+AWS_ACCESS_KEY_ID=AKIA...
+AWS_SECRET_ACCESS_KEY=...
+```
+
+### Using Environment Variables in API Routes
+```typescript
+import { env } from "~/lib/env.server";
+
+export async function loader() {
+  // ✅ CORRECT - Use from env.server.ts
+  const apiKey = env.OPENAI_API_KEY;
+  const dbUrl = env.DATABASE_URL;
+  
+  // ❌ WRONG - Never hardcode
+  const apiKey = "sk-hardcoded-key";
+  
+  return Response.json({ status: "ok" });
+}
+```
+
+### Public URL Configuration
+```typescript
+import { env } from "~/lib/env.server";
+
+export async function action() {
+  // Use PUBLIC_URL for absolute URLs
+  const callbackUrl = `${env.PUBLIC_URL}/api/callback`;
+  const resetUrl = `${env.PUBLIC_URL}/reset-password?token=${token}`;
+  
+  return Response.json({ callbackUrl });
+}
+```
+
+**When prompted to update PUBLIC_URL**:
+1. Open `.env` file
+2. Update: `PUBLIC_URL=https://new-url.com`
+3. Restart server
+
 ## Creating API Routes in Remix
 
 ### File Naming Convention
