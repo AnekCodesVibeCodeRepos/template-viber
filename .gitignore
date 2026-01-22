@@ -16,6 +16,15 @@ dist-ssr
 build
 .cache
 
+# Environment variables
+# .env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.db-journal
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
