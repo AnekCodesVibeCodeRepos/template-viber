@@ -146,7 +146,7 @@ export function FormComponent() {
 
 ### Adding a New UI Component
 1. Consult `docs/architecture/component-hierarchy.mermaid`
-2. Create in `app/components/ui/` if reusable
+2. Create in `~/components/ui/` if reusable
 3. Use Radix UI primitives when possible
 4. Apply Tailwind styling
 5. Export from component file

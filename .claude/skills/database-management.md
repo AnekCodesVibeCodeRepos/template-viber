@@ -31,10 +31,12 @@ pnpm run db:generate
 ### Push Schema (Development)
 ```bash
 pnpm run db:push
-# or: npx drizzle-kit push
+# or: npx drizzle-kit push --force
 ```
 **When to use**: Quick prototyping, pushes schema directly without migrations
 **⚠️ Caution**: Can cause data loss, use only in development
+**Note**: The `--force` flag skips interactive confirmation (required for automation/AI)
+**Prerequisite**: Requires `DATABASE_URL` in `.env` file
 
 ### Run Migrations
 ```bash
@@ -370,8 +372,11 @@ pnpm run db:migrate
 ### 3. Quick Prototyping (No Migrations)
 
 ```bash
-# Push schema directly (dev only!)
+# Push schema directly (dev only!) - non-interactive with --force flag
 pnpm run db:push
+
+# Or manually:
+npx drizzle-kit push --force
 ```
 
 ## Best Practices
@@ -384,12 +389,81 @@ pnpm run db:push
 - **Add indexes** for frequently queried fields
 - **Use `.returning()`** to get inserted/updated data
 - **Commit migrations** to version control
+- **Use Drizzle ORM query builder** instead of raw SQL when possible
+- **Convert Date objects to ISO strings** when using in raw SQL queries
 
 ### ❌ DON'T
 - **Don't use `db:push`** in production
 - **Don't modify** existing migration files
 - **Don't hardcode** database credentials
 - **Don't skip** generating migrations in production
+- **Don't pass JavaScript Date objects directly** to raw SQL queries
+- **Don't use raw SQL** when Drizzle ORM query builder can handle the query
+
+### Date Handling in Queries
+
+**CRITICAL**: When using JavaScript Date objects in SQL queries, always convert to ISO strings:
+
+#### ❌ WRONG - Will cause PostgreSQL errors
+```typescript
+import { sql } from "drizzle-orm";
+
+const user = { createdAt: new Date(), referralCount: 5 };
+
+// BAD: Date object passed directly
+const result = await db.execute(sql`
+  SELECT count(*) as rank 
+  FROM ${waitlistEntries} 
+  WHERE ${waitlistEntries.createdAt} < ${user.createdAt}
+`);
+// Error: Failed query - params: Fri Jan 23 2026 17:05:47 GMT+0530 (India Standard Time)
+```
+
+#### ✅ CORRECT - Convert Date to ISO string
+```typescript
+import { sql } from "drizzle-orm";
+
+const user = { createdAt: new Date(), referralCount: 5 };
+
+// GOOD: Date converted to ISO string
+const result = await db.execute(sql`
+  SELECT count(*) as rank 
+  FROM ${waitlistEntries} 
+  WHERE ${waitlistEntries.createdAt} < ${user.createdAt.toISOString()}
+`);
+```
+
+#### ✅ BETTER - Use Drizzle ORM query builder instead
+```typescript
+import { lt, count } from "drizzle-orm";
+
+const user = { createdAt: new Date(), referralCount: 5 };
+
+// BEST: Use ORM - handles Date conversion automatically
+const result = await db
+  .select({ rank: count() })
+  .from(waitlistEntries)
+  .where(lt(waitlistEntries.createdAt, user.createdAt));
+```
+
+### When to Use Raw SQL vs ORM
+
+#### Prefer Drizzle ORM Query Builder For:
+- Simple CRUD operations
+- Standard WHERE conditions (eq, gt, lt, like, etc.)
+- JOINs and relations
+- Ordering, limiting, grouping
+- Most common queries
+
+**Why?** Type-safe, handles Date conversions automatically, less error-prone
+
+#### Use Raw SQL Only For:
+- Complex aggregations ORM doesn't support well
+- Performance-critical queries with specific optimizations
+- Database-specific features not in ORM
+- Complex window functions or CTEs
+
+**Remember:** If using raw SQL with Dates, always use `.toISOString()`
 
 ## Example: Complete API Route
 
