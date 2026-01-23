@@ -36,8 +36,8 @@ nano .env  # or use your preferred editor
 ### 1. Application Configuration
 ```env
 NODE_ENV=development          # development | production | test
-PORT=3795                     # Application port
-PUBLIC_URL=http://localhost:3795  # Public-facing URL
+PORT=5173                     # Application port
+PUBLIC_URL=http://localhost:5173  # Public-facing URL
 ```
 
 **PUBLIC_URL Usage**:
@@ -79,7 +79,7 @@ Variables with `VITE_` prefix are exposed to the browser:
 
 ```env
 # ⚠️ Only use for non-sensitive configuration
-VITE_API_BASE_URL=http://localhost:3795
+VITE_API_BASE_URL=http://localhost:5173
 VITE_ENABLE_ANALYTICS=true
 VITE_PUBLIC_KEY=pk_...  # Public keys only
 ```
@@ -140,7 +140,7 @@ The base URL where your application is publicly accessible. Used for generating 
 
 #### Development
 ```env
-PUBLIC_URL=http://localhost:3795
+PUBLIC_URL=http://localhost:5173
 ```
 
 #### Staging
@@ -329,7 +329,7 @@ cp .env.example .env
 # 3. Fill in required values
 # - Get DATABASE_URL (local or hosted)
 # - Generate SESSION_SECRET
-# - Set PUBLIC_URL to http://localhost:3795
+# - Set PUBLIC_URL to http://localhost:5173
 # - Add any API keys needed
 
 # 4. Setup database

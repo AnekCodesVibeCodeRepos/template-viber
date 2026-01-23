@@ -38,8 +38,8 @@ export function getRequiredEnv(key: string): string {
 export const env = {
   // Application
   NODE_ENV: getEnv("NODE_ENV") || "development",
-  PORT: getEnv("PORT") || "3795",
-  PUBLIC_URL: getEnv("PUBLIC_URL") || "http://localhost:3795",
+  PORT: getEnv("PORT") || "5173",
+  PUBLIC_URL: getEnv("PUBLIC_URL") || "http://localhost:5173",
 
   // Database (optional - only needed if using database features)
   DATABASE_URL: getEnv("DATABASE_URL"),

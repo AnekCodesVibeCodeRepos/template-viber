@@ -113,7 +113,7 @@ const url = `${env.PUBLIC_URL}/api/callback`;
 ### Required Environment Variables
 ```env
 DATABASE_URL=postgresql://user:password@host:port/database
-PUBLIC_URL=http://localhost:3795
+PUBLIC_URL=http://localhost:5173
 SESSION_SECRET=your-secret-key-here
 ```
 

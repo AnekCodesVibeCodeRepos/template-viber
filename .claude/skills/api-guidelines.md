@@ -429,15 +429,15 @@ export async function action({ request }: ActionFunctionArgs) {
 
 ```bash
 # GET request
-curl http://localhost:3795/api/health
+curl http://localhost:5173/api/health
 
 # POST request with JSON
-curl -X POST http://localhost:3795/api/users \
+curl -X POST http://localhost:5173/api/users \
   -H "Content-Type: application/json" \
   -d '{"name":"John","email":"john@example.com"}'
 
 # With authentication
-curl http://localhost:3795/api/users \
+curl http://localhost:5173/api/users \
   -H "Authorization: Bearer your-token-here"
 ```
 
