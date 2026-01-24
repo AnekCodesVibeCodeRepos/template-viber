@@ -192,7 +192,7 @@ nano .env
 PUBLIC_URL=https://new-domain.com
 
 # 3. Restart server
-pnpm run dev
+bun run dev
 ```
 
 ### Automated Update
@@ -201,7 +201,7 @@ pnpm run dev
 sed -i '' 's|PUBLIC_URL=.*|PUBLIC_URL=https://new-domain.com|g' .env
 
 # Restart server
-pnpm run dev
+bun run dev
 ```
 
 ### AI Assistant Prompt
@@ -232,7 +232,7 @@ ls -la .env
 # ❌ Wrong: KEY = value
 
 # Restart server
-pnpm run dev
+bun run dev
 ```
 
 ### Client-Side Access Error

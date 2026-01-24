@@ -165,12 +165,12 @@ See `package-management.md` for detailed package management guidelines.
 bun install
 bun add <package>
 
-# Development (use pnpm)
-pnpm run dev
-pnpm run build
-pnpm run test
-pnpm run lint
-pnpm run typecheck
+# Development (use bun)
+bun run dev
+bun run build
+bun run test
+bun run lint
+bun run typecheck
 ```
 
 ## Additional Resources

@@ -3,7 +3,7 @@
 ## Package Management Guidelines
 
 ### Installation Commands
-**ALWAYS use `bun` for package installation** - it's significantly faster than npm or pnpm:
+**ALWAYS use `bun` for package installation** - it's significantly faster than npm or bun:
 ```bash
 bun install
 bun add <package-name>
@@ -12,18 +12,18 @@ bun remove <package-name>
 ```
 
 ### Other Package Management Tasks
-**Use `pnpm` for all other package management operations**:
+**Use `bun` for all other package management operations**:
 ```bash
-pnpm run dev
-pnpm run build
-pnpm run test
-pnpm run lint
-pnpm run typecheck
+bun run dev
+bun run build
+bun run test
+bun run lint
+bun run typecheck
 ```
 
 ### Why This Setup?
 - **bun**: Fastest package installation (up to 25x faster than npm)
-- **pnpm**: Efficient disk space usage and fast script execution for development tasks
+- **bun**: Efficient disk space usage and fast script execution for development tasks
 
 ## Architecture Documentation
 
@@ -128,29 +128,29 @@ SESSION_SECRET=your-secret-key-here
 ### Common Database Commands
 ```bash
 # Generate migrations
-pnpm run db:generate
+bun run db:generate
 
 # Apply migrations
-pnpm run db:migrate
+bun run db:migrate
 
 # Push schema (dev only - no migrations)
-pnpm run db:push
+bun run db:push
 
 # Open Drizzle Studio (GUI)
-pnpm run db:studio
+bun run db:studio
 
 # Seed database
-pnpm run db:seed
+bun run db:seed
 
 # Test connection
-pnpm run db:test
+bun run db:test
 ```
 
 ### Migration Workflow
 1. **Development**: Edit `db/schema/index.ts`
-2. **Generate**: `pnpm run db:generate` (creates SQL migration)
+2. **Generate**: `bun run db:generate` (creates SQL migration)
 3. **Review**: Check generated files in `db/migrations/`
-4. **Apply**: `pnpm run db:migrate`
+4. **Apply**: `bun run db:migrate`
 5. **Commit**: Add migration files to version control
 
 ### Using Drizzle in Code

@@ -84,7 +84,7 @@ This directory contains comprehensive architecture diagrams for the 3D Waitlist 
 - Build process (TypeScript, ESLint, Vite)
 - Testing with Vitest
 - Production deployment
-- Package management (bun + pnpm)
+- Package management (bun + bun)
 
 **Use this diagram to:**
 - Understand the build pipeline
@@ -170,7 +170,7 @@ This application follows these architectural principles:
 3. **Server State Management**: TanStack Query handles all server state and caching
 4. **Accessibility First**: Radix UI provides accessible primitives
 5. **Performance**: Vite for fast builds, React 18 for concurrent features
-6. **Developer Experience**: Fast installs (bun), fast scripts (pnpm), HMR, and type safety
+6. **Developer Experience**: Fast installs (bun), fast scripts (bun), HMR, and type safety
 
 ---
 

@@ -203,7 +203,7 @@ nano .env
 PUBLIC_URL=https://example.com
 
 # 3. Restart development server
-pnpm run dev
+bun run dev
 ```
 
 ### Automated Update Script
@@ -216,12 +216,12 @@ sed -i '' 's|PUBLIC_URL=.*|PUBLIC_URL=https://example.com|g' .env
 ```bash
 # Restart server to pick up changes
 # Development
-pnpm run dev
+bun run dev
 
 # Production
 # Rebuild and restart
-pnpm run build
-pnpm start
+bun run build
+bun start
 ```
 
 ## Security Best Practices
@@ -333,10 +333,10 @@ cp .env.example .env
 # - Add any API keys needed
 
 # 4. Setup database
-pnpm run db:migrate
+bun run db:migrate
 
 # 5. Start development
-pnpm run dev
+bun run dev
 ```
 
 ### Adding New Environment Variable
@@ -382,7 +382,7 @@ DATABASE_URL=postgresql://...
 DATABASE_URL = postgresql://...
 
 # 3. Restart dev server
-pnpm run dev
+bun run dev
 ```
 
 ### Client-Side Access Issues

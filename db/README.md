@@ -34,27 +34,27 @@ export const users = pgTable('users', {
 ### 4. Generate and Run Migrations
 ```bash
 # Generate migration SQL
-pnpm run db:generate
+bun run db:generate
 
 # Apply migrations
-pnpm run db:migrate
+bun run db:migrate
 ```
 
 ### 5. Seed Database (Optional)
 ```bash
-pnpm run db:seed
+bun run db:seed
 ```
 
 ## Database Commands
 
 | Command | Description | When to Use |
 |---------|-------------|-------------|
-| `pnpm run db:generate` | Generate SQL migrations | After schema changes |
-| `pnpm run db:push` | Push schema directly | Quick prototyping (dev only) |
-| `pnpm run db:migrate` | Run migrations | Apply migrations to database |
-| `pnpm run db:studio` | Open Drizzle Studio | Database GUI browser |
-| `pnpm run db:seed` | Run seed script | Initial data setup |
-| `pnpm run db:test` | Test connection | Verify database works |
+| `bun run db:generate` | Generate SQL migrations | After schema changes |
+| `bun run db:push` | Push schema directly | Quick prototyping (dev only) |
+| `bun run db:migrate` | Run migrations | Apply migrations to database |
+| `bun run db:studio` | Open Drizzle Studio | Database GUI browser |
+| `bun run db:seed` | Run seed script | Initial data setup |
+| `bun run db:test` | Test connection | Verify database works |
 
 ## Schema Definition
 
@@ -208,14 +208,14 @@ await db
 
 ### Connection Test
 ```bash
-pnpm run db:test
+bun run db:test
 ```
 
 ### Reset Migrations (Dev Only)
 ```bash
 rm -rf db/migrations
-pnpm run db:generate
-pnpm run db:migrate
+bun run db:generate
+bun run db:migrate
 ```
 
 ## Resources

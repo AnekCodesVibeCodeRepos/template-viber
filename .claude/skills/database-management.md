@@ -23,14 +23,14 @@ DATABASE_URL=postgresql://user:password@host:port/database?schema=public
 
 ### Generate Migration
 ```bash
-pnpm run db:generate
+bun run db:generate
 # or: npx drizzle-kit generate
 ```
 **When to use**: After modifying `db/schema/index.ts` to generate SQL migrations
 
 ### Push Schema (Development)
 ```bash
-pnpm run db:push
+bun run db:push
 # or: npx drizzle-kit push --force
 ```
 **When to use**: Quick prototyping, pushes schema directly without migrations
@@ -40,28 +40,28 @@ pnpm run db:push
 
 ### Run Migrations
 ```bash
-pnpm run db:migrate
+bun run db:migrate
 # or: npx drizzle-kit migrate
 ```
 **When to use**: Apply generated migrations to database
 
 ### Drizzle Studio (GUI)
 ```bash
-pnpm run db:studio
+bun run db:studio
 # or: npx drizzle-kit studio
 ```
 **When to use**: Visual database browser (like Studio)
 
 ### Seed Database
 ```bash
-pnpm run db:seed
+bun run db:seed
 # or: tsx db/seed.ts
 ```
 **When to use**: Populate database with initial/test data
 
 ### Test Connection
 ```bash
-pnpm run db:test
+bun run db:test
 # or: tsx scripts/test-db-connection.ts
 ```
 **When to use**: Verify database connection works
@@ -338,11 +338,11 @@ export const waitlistEntries = pgTable('waitlist_entries', {
 **Steps**:
 ```bash
 # 1. Generate migration
-pnpm run db:generate
+bun run db:generate
 
 # 2. Review generated SQL in db/migrations/
 # 3. Apply migration
-pnpm run db:migrate
+bun run db:migrate
 ```
 
 ### 2. Development: Modifying Existing Table
@@ -362,18 +362,18 @@ export const waitlistEntries = pgTable('waitlist_entries', {
 **Steps**:
 ```bash
 # 1. Generate migration
-pnpm run db:generate
+bun run db:generate
 
 # 2. Review generated SQL
 # 3. Apply migration
-pnpm run db:migrate
+bun run db:migrate
 ```
 
 ### 3. Quick Prototyping (No Migrations)
 
 ```bash
 # Push schema directly (dev only!) - non-interactive with --force flag
-pnpm run db:push
+bun run db:push
 
 # Or manually:
 npx drizzle-kit push --force
@@ -529,20 +529,20 @@ ls db/migrations/
 
 # Reset and regenerate (dev only!)
 rm -rf db/migrations
-pnpm run db:generate
-pnpm run db:migrate
+bun run db:generate
+bun run db:migrate
 ```
 
 ### Type Issues
 ```bash
 # Regenerate types
-pnpm run db:generate
+bun run db:generate
 ```
 
 ### Connection Issues
 ```bash
 # Test connection
-pnpm run db:test
+bun run db:test
 ```
 
 ## Resources
