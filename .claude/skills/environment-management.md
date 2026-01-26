@@ -50,7 +50,7 @@ PUBLIC_URL=http://localhost:5173  # Public-facing URL
 ### 2. Database Configuration
 ```env
 # PostgreSQL connection string
-DATABASE_URL=postgresql://user:password@host:port/database?schema=public
+DATABASE_URL=postgresql://user:password@host:port/database
 
 # Optional: Direct connection (for connection pooling)
 DIRECT_DATABASE_URL=postgresql://user:password@host:port/database

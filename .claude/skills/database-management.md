@@ -9,7 +9,7 @@ This project uses **Drizzle ORM** with **PostgreSQL** for database management. A
 Database connection is configured through `.env` file:
 
 ```env
-DATABASE_URL=postgresql://user:password@host:port/database?schema=public
+DATABASE_URL=postgresql://user:password@host:port/database
 ```
 
 **Format**: `postgresql://[user]:[password]@[host]:[port]/[database]`
@@ -117,6 +117,58 @@ export const products = pgTable('products', {
   metadata: jsonb('metadata').$type<{ tags: string[] }>(),
   createdAt: timestamp('created_at').defaultNow(),
 });
+```
+
+
+### Defining Enums
+Use Enums for fixed sets of values (e.g., User Roles, Status).
+
+```typescript
+import { pgTable, pgEnum, text, serial } from 'drizzle-orm/pg-core';
+
+// 1. Define the Enum (must be exported)
+export const roleEnum = pgEnum('role', ['admin', 'user', 'guest']);
+
+// 2. Use in Table
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
+  name: text('name'),
+  // Usage:
+  role: roleEnum('role').default('user').notNull(),
+});
+```
+
+### 3. Add "Cascading Deletes"
+
+```typescript
+import { pgTable, serial, text, integer } from 'drizzle-orm/pg-core';
+import { relations } from 'drizzle-orm';
+
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
+  name: text('name').notNull(),
+});
+
+export const posts = pgTable('posts', {
+  id: serial('id').primaryKey(),
+  title: text('title').notNull(),
+  // UPDATED: Added cascade delete
+  userId: integer('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }), 
+});
+
+// Define relations
+export const usersRelations = relations(users, ({ many }) => ({
+  posts: many(posts),
+}));
+
+export const postsRelations = relations(posts, ({ one }) => ({
+  user: one(users, {
+    fields: [posts.userId],
+    references: [users.id],
+  }),
+}));
 ```
 
 ### Relationships
@@ -238,6 +290,38 @@ const emails = await db
   })
   .from(users);
 ```
+
+#### Relational Queries (The `db.query` API)
+**Preferred for**: Fetching nested data (e.g., User + Posts) without writing manual JOINs.
+
+```typescript
+import { db } from "~/lib/db.server";
+import { users } from "~/../../db/schema";
+import { eq } from "drizzle-orm";
+
+// 1. Get user with their posts (One-to-Many)
+const userWithPosts = await db.query.users.findFirst({
+  where: eq(users.id, 1),
+  with: {
+    posts: true, // Fetch all columns from posts
+  },
+});
+
+// 2. partial selection (specific columns only)
+const userProfile = await db.query.users.findMany({
+  columns: {
+    id: true,
+    name: true,
+  },
+  with: {
+    posts: {
+      columns: {
+        title: true,
+      },
+      limit: 3, // Limit nested results
+    },
+  },
+});
 
 #### Update
 ```typescript
@@ -378,6 +462,30 @@ bun run db:push
 # Or manually:
 npx drizzle-kit push --force
 ```
+
+### Relational Queries (Preferred for Nested Data)
+Use the `db.query` API for fetching related data without manual joins.
+
+```typescript
+// Get all users with their posts
+const usersWithPosts = await db.query.users.findMany({
+  with: {
+    posts: true, // Fetch all fields from posts
+  },
+});
+
+// Get specific user with partial post data
+const user = await db.query.users.findFirst({
+  where: eq(users.id, 1),
+  with: {
+    posts: {
+      columns: {
+        title: true,
+      },
+      limit: 5,
+    },
+  },
+});
 
 ## Best Practices
 
