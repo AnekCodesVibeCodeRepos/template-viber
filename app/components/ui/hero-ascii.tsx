@@ -211,7 +211,7 @@ export default function Home() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .dither-pattern {
           background-image: 
             repeating-linear-gradient(0deg, transparent 0px, transparent 1px, white 1px, white 2px),

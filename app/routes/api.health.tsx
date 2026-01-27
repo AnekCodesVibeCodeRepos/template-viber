@@ -1,6 +1,7 @@
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { db } from "~/lib/db.server";
 import { env } from "~/lib/env.server";
+import { sql } from "drizzle-orm";
 
 /**
  * Health Check API
@@ -32,7 +33,6 @@ export async function loader() {
 
   try {
     // Run a simple query to verify database is actually working
-    const { sql } = await import("drizzle-orm");
     await db.execute(sql`SELECT 1 as connected`);
 
     const responseTime = Date.now() - startTime;
