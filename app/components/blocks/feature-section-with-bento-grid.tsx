@@ -5,23 +5,33 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { IconBrandYoutubeFilled } from "@tabler/icons-react";
 import { Link } from "@remix-run/react";
+import { SplineHoverCubes } from "~/components/ui/spline-hover-cubes";
+import { SplineHoverSphere } from "~/components/ui/spline-hover-sphere";
 
 export function FeaturesSectionWithBentoGrid() {
   const features = [
     {
-      title: "Track issues effectively",
+      title: "Interactive 3D Hover Effects",
       description:
-        "Track and manage your project issues with ease using our intuitive interface.",
-      skeleton: <SkeletonOne />,
+        "Immersive hover-activated cubes with textured transitions. Perfect for hero sections and interactive showcases.",
+      skeleton: <SkeletonFive />,
       className:
-        "col-span-1 md:col-span-4 lg:col-span-4 border-b md:border-r dark:border-neutral-800",
+        "col-span-1 md:col-span-3 lg:col-span-3 border-b md:border-r dark:border-neutral-800",
+    },
+    {
+      title: "Reactive Sphere Animation",
+      description:
+        "A mesmerizing sphere made of smaller spheres that react on hover with color and size changes. Ideal for techy landing pages.",
+      skeleton: <SkeletonSix />,
+      className:
+        "col-span-1 md:col-span-3 lg:col-span-3 border-b dark:border-neutral-800",
     },
     {
       title: "Capture pictures with AI",
       description:
         "Capture stunning photos effortlessly using our advanced AI technology.",
       skeleton: <SkeletonTwo />,
-      className: "col-span-1 md:col-span-2 lg:col-span-2 border-b dark:border-neutral-800",
+      className: "col-span-1 md:col-span-2 lg:col-span-2 border-b md:border-r dark:border-neutral-800",
     },
     {
       title: "Watch our AI on YouTube",
@@ -29,14 +39,14 @@ export function FeaturesSectionWithBentoGrid() {
         "Whether its you or Tyler Durden, you can get to know about our product on YouTube",
       skeleton: <SkeletonThree />,
       className:
-        "col-span-1 md:col-span-3 lg:col-span-3 border-b md:border-r dark:border-neutral-800",
+        "col-span-1 md:col-span-2 lg:col-span-2 border-b md:border-r dark:border-neutral-800",
     },
     {
-      title: "Deploy in seconds",
+      title: "Track issues effectively",
       description:
-        "With our blazing fast, state of the art, cutting edge, we are so back cloud servies (read AWS) - you can deploy your model in seconds.",
-      skeleton: <SkeletonFour />,
-      className: "col-span-1 md:col-span-3 lg:col-span-3 border-b md:border-none",
+        "Track and manage your project issues with ease using our intuitive interface.",
+      skeleton: <SkeletonOne />,
+      className: "col-span-1 md:col-span-2 lg:col-span-2 border-b md:border-none",
     },
   ];
   return (
@@ -218,6 +228,92 @@ export const SkeletonFour = () => {
   return (
     <div className="h-60 md:h-60 flex flex-col items-center relative bg-transparent dark:bg-transparent mt-10">
       <Globe className="absolute -right-10 md:-right-10 -bottom-80 md:-bottom-72" />
+    </div>
+  );
+};
+
+/**
+ * SkeletonFive: Demonstrates proper placement of 3D Spline hover cubes
+ *
+ * Key Features:
+ * - Content positioned in top-left corner (safe zone)
+ * - 3D scene takes full space without obstruction
+ * - Gradient overlay at bottom for smooth transitions
+ * - Proper z-index layering (scene: 0, overlay: 10, content: 20)
+ *
+ * Tags: #hero #landing #hover #interaction #cubes #cursor #dark #neon
+ * Color: #3F2B6D (Deep Purple with neon accents)
+ */
+export const SkeletonFive = () => {
+  return (
+    <div className="relative flex h-full min-h-[500px] w-full overflow-hidden rounded-lg bg-gradient-to-br from-slate-950 via-[#3F2B6D]/20 to-slate-900">
+      {/* 3D Spline Scene - Layer 0 (Background) */}
+      <SplineHoverCubes className="absolute inset-0 z-0" />
+
+      {/* Content positioned in safe zone (top-left) - Layer 20 */}
+      <div className="absolute top-6 left-6 z-20 max-w-xs">
+        <div className="rounded-lg bg-black/40 backdrop-blur-sm p-4 border border-purple-500/20">
+          <h3 className="text-sm font-semibold text-white mb-1">
+            Hover to Interact
+          </h3>
+          <p className="text-xs text-purple-200/80">
+            Move your cursor over the scene to reveal animated cubes with textured transitions
+          </p>
+        </div>
+      </div>
+
+      {/* Bottom gradient overlay - Layer 10 */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 h-24 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
+
+      {/* Corner accent indicator (shows safe zone) */}
+      <div className="absolute bottom-4 right-4 z-20">
+        <div className="px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-400/30 backdrop-blur-sm">
+          <span className="text-xs font-medium text-purple-300">#hover #cubes #dark</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/**
+ * SkeletonSix: Interactive Hover Sphere
+ *
+ * Key Features:
+ * - Large sphere made of smaller reactive spheres
+ * - Hover-triggered size and color changes
+ * - Wave-like animations with green/blue color palette
+ * - Best as centerpiece with minimal overlay
+ *
+ * Tags: #hero #interactive #hover #animation #sphere #green #blue #wave #tech
+ * Colors: Green, Blue, Teal (cyan)
+ */
+export const SkeletonSix = () => {
+  return (
+    <div className="relative flex h-full min-h-[500px] w-full overflow-hidden rounded-lg bg-gradient-to-br from-slate-950 via-teal-900/20 to-blue-950">
+      {/* 3D Spline Scene - Layer 0 (Background) */}
+      <SplineHoverSphere className="absolute inset-0 z-0" />
+
+      {/* Content positioned in safe zone (top-left) - Layer 20 */}
+      <div className="absolute top-6 left-6 z-20 max-w-xs">
+        <div className="rounded-lg bg-black/40 backdrop-blur-sm p-4 border border-teal-500/20">
+          <h3 className="text-sm font-semibold text-white mb-1">
+            Interactive Sphere
+          </h3>
+          <p className="text-xs text-teal-200/80">
+            Hover over the sphere to see the smaller spheres react with size and color changes
+          </p>
+        </div>
+      </div>
+
+      {/* Bottom gradient overlay - Layer 10 */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 h-24 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
+
+      {/* Corner accent indicator */}
+      <div className="absolute bottom-4 right-4 z-20">
+        <div className="px-3 py-1.5 rounded-full bg-teal-500/10 border border-teal-400/30 backdrop-blur-sm">
+          <span className="text-xs font-medium text-teal-300">#sphere #hover #wave</span>
+        </div>
+      </div>
     </div>
   );
 };

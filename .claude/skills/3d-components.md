@@ -52,11 +52,13 @@ export default function Features() {
 **Dependencies**: Requires `cobe` package
 
 **Bento Grid Layout**:
-The component also includes a complete features section with a Bento Grid layout (6-column grid) featuring four skeleton components:
+The component also includes a complete features section with a Bento Grid layout (6-column grid) featuring six skeleton components:
 - **SkeletonOne**: Image showcase with gradient overlays
 - **SkeletonTwo**: Interactive image gallery with hover animations
 - **SkeletonThree**: YouTube video link with play button overlay
 - **SkeletonFour**: 3D Globe component
+- **SkeletonFive**: Spline Hover Cubes - Interactive 3D cubes with hover effects
+- **SkeletonSix**: Spline Hover Sphere - Reactive sphere made of smaller spheres
 
 **Use Cases**:
 - Global reach sections
@@ -135,7 +137,193 @@ export function HeroSection() {
 - Timing: ease function
 - Defined in `tailwind.config.ts` as `animate-spotlight`
 
-### 3. SplineSceneBasic Component
+### 3. SplineHoverCubes Component
+**Location**: `~/components/ui/spline-hover-cubes.tsx`
+
+**Purpose**: Interactive 3D scene featuring dynamically appearing cubes with hover effects, textured transitions, and immersive motion.
+
+**Scene URL**: `https://prod.spline.design/2brKVxQg9zPVuc-s/scene.splinecode`
+
+**Tags**: `#hero` `#landing` `#hover` `#interaction` `#cubes` `#boxes` `#cursor` `#dark` `#neon`
+
+**Color Scheme**:
+- Primary: `#3F2B6D` (Deep Purple)
+- Theme: Dark with neon highlights
+- Style: Dark, mysterious, futuristic
+
+**Features**:
+- Dynamic cube appearance on cursor hover
+- Textured transitions for visual depth
+- Interactive motion responsive to user interaction
+- Smooth animations with neon glow effects
+- Dark theme optimized with purple/neon accents
+- Lazy loaded with React Suspense
+
+**Basic Usage**:
+```tsx
+import { SplineHoverCubes } from "~/components/ui/spline-hover-cubes";
+
+export function HeroSection() {
+  return (
+    <div className="relative h-[600px] w-full">
+      <SplineHoverCubes className="absolute inset-0" />
+
+      <div className="absolute top-8 left-8 z-10">
+        <h1 className="text-white text-4xl">Your Content</h1>
+      </div>
+    </div>
+  );
+}
+```
+
+**Perfect For**:
+- Hero sections (full viewport background)
+- Feature showcases (bento grid cards)
+- Landing page centerpieces
+- Interactive portfolio sections
+- Product demonstration areas
+
+**Not Recommended For**:
+- Form-heavy pages
+- Text-dense content areas
+- Small containers (< 400px height)
+- Mobile-first experiences (consider fallback)
+
+**CRITICAL PLACEMENT GUIDELINES**:
+
+⚠️ **The 3D effect requires unobstructed space!**
+
+**DO's** ✅:
+1. Use as full-screen background with content overlaid using z-index
+2. Give it dedicated space without overlapping interactive elements
+3. Place text/CTAs OUTSIDE the interactive area or in corners
+4. Use transparent gradients at edges for smooth content transitions
+5. Ensure min-height of 400px-600px for full effect visibility
+6. Position content in safe zones (top-left, top-right, bottom-left, bottom-right corners)
+
+**DON'Ts** ❌:
+1. Don't place clickable elements directly over the 3D scene
+2. Don't overlay dense text that blocks interaction
+3. Don't use in small containers (< 400px height)
+4. Don't stack multiple interactive layers on top
+5. Don't place forms or input fields over the scene
+
+**Z-Index Layering Strategy**:
+```
+Layer 0 (z-0):   3D Spline Scene
+Layer 5 (z-5):   Gradient overlays (pointer-events-none)
+Layer 10 (z-10): Content elements (text, buttons)
+Layer 20 (z-20): Interactive tooltips or modals
+```
+
+**Bento Grid Implementation Example**:
+See `SkeletonFive` in `~/components/blocks/feature-section-with-bento-grid.tsx` for proper integration:
+- Min-height of 500px for visibility
+- Content positioned in top-left safe zone
+- Bottom gradient overlay for smooth transition
+- Tag indicators in bottom-right corner
+- Proper z-index layering
+
+**Complete Documentation**: See `~/components/ui/SPLINE_HOVER_CUBES_GUIDE.md` for comprehensive usage guide.
+
+### 4. SplineHoverSphere Component
+**Location**: `~/components/ui/spline-hover-sphere.tsx`
+
+**Purpose**: Hero section interaction concept featuring a large sphere composed of smaller spheres that react on hover by changing size and color. Perfect for techy landing pages.
+
+**Scene URL**: `https://prod.spline.design/48VBTd2o7FCZRCte/scene.splinecode`
+
+**Tags**: `#hero` `#interactive` `#hover` `#animation` `#landing` `#tech` `#sphere` `#green` `#blue` `#wave`
+
+**Color Scheme**:
+- Primary: Green, Blue, Teal (cyan)
+- Theme: Dark with vibrant green/blue accents
+- Style: Tech, futuristic, innovative, modern
+- Accent: Wave effects with color transitions
+
+**Features**:
+- Large sphere made of smaller reactive spheres
+- Hover-triggered size and color changes
+- Smooth wave-like animations
+- Green/blue/teal color palette
+- Perfect for tech-focused landing pages
+- Mesmerizing interactive visual effect
+- Lazy loaded with React Suspense
+
+**Basic Usage**:
+```tsx
+import { SplineHoverSphere } from "~/components/ui/spline-hover-sphere";
+
+export function TechHero() {
+  return (
+    <div className="relative h-screen w-full">
+      <SplineHoverSphere className="absolute inset-0" />
+
+      <div className="absolute top-12 left-12 z-10">
+        <h1 className="text-white text-5xl">Innovation Starts Here</h1>
+      </div>
+    </div>
+  );
+}
+```
+
+**Perfect For**:
+- Hero sections (techy landing pages)
+- Technology showcases
+- Innovation-focused pages
+- Product launches (tech products)
+- Interactive portfolio headers
+- SaaS landing pages
+- AI/ML product pages
+
+**Not Recommended For**:
+- Light-themed pages (colors won't show well)
+- Small containers (< 500px)
+- Content-heavy pages
+- Multiple instances per page (performance)
+
+**CRITICAL PLACEMENT GUIDELINES**:
+
+⚠️ **The sphere needs space to breathe!**
+
+**DO's** ✅:
+1. Use as hero section centerpiece with minimal text overlay
+2. Give the sphere space to breathe (min 500px height)
+3. Place text in corners or sides, not covering the sphere
+4. Use dark backgrounds to make colors pop
+5. Position CTAs below or to the side of the sphere
+6. Allow full viewport width for maximum impact
+
+**DON'Ts** ❌:
+1. Don't cover the sphere with dense content
+2. Don't use on light backgrounds (colors won't show well)
+3. Don't place in small containers (< 500px)
+4. Don't overlay forms or complex UI elements
+5. Don't use multiple instances on the same page
+
+**Best Practices**:
+- **Centered Hero**: Use as full-viewport centerpiece
+- **Minimal Overlay**: Keep text minimal and in corners
+- **Dark Background**: Essential for color visibility
+- **Single Instance**: One per page for performance
+- **Mobile Fallback**: Consider static version for mobile
+
+**Bento Grid Implementation Example**:
+See `SkeletonSix` in `~/components/blocks/feature-section-with-bento-grid.tsx` for proper integration:
+- Min-height of 500px for visibility
+- Content positioned in top-left safe zone
+- Bottom gradient overlay for smooth transition
+- Tag indicators in bottom-right corner
+- Teal/blue color scheme with dark background
+
+**Visual Characteristics**:
+- **Center Focus**: Sphere naturally draws eye to center
+- **Wave Motion**: Organic, flowing animations
+- **Color Shift**: Green to blue transitions on interaction
+- **Size Changes**: Smaller spheres scale on hover
+- **Tech Aesthetic**: Perfect for SaaS, AI, tech products
+
+### 5. SplineSceneBasic Component
 **Location**: `~/components/ui/spline-scene-basic.tsx`
 
 **Purpose**: Pre-built showcase section featuring a 3D robot model with text content and spotlight effects.
