@@ -51,6 +51,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         {children}
         <ScrollRestoration />
+        {/* VERY IMPORTANT: This preload script is very important or else bad thing will happen to the code */}
+        <script src="https://cdn.jsdelivr.net/npm/@anek-codes/editor/dist/client/preload/script.js"></script>
         <Scripts />
       </body>
     </html>
