@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   Background,
-  Controls,
   Edge,
   Handle,
   MarkerType,
@@ -293,25 +292,6 @@ export function FramerServices() {
         .byoc-flow .flow-edge-active .react-flow__edge-path {
           animation: byoc-dash 1.2s linear infinite;
         }
-        .byoc-flow .react-flow__controls {
-          box-shadow: none;
-          border: 1px solid rgba(216, 231, 242, 0.14);
-          border-radius: 10px;
-          overflow: hidden;
-          background: rgba(4, 7, 13, 0.85);
-          backdrop-filter: blur(6px);
-        }
-        .byoc-flow .react-flow__controls button {
-          background: rgba(255, 255, 255, 0.02);
-          border-bottom: 1px solid rgba(216, 231, 242, 0.12);
-          color: rgba(213, 219, 230, 0.88);
-        }
-        .byoc-flow .react-flow__controls button:hover {
-          background: rgba(255, 255, 255, 0.08);
-        }
-        .byoc-flow .react-flow__controls button:last-child {
-          border-bottom: 0;
-        }
         @keyframes byoc-dash {
           to { stroke-dashoffset: -30; }
         }
@@ -466,6 +446,7 @@ export function FramerServices() {
                 zoomOnScroll={false}
                 zoomOnPinch={false}
                 zoomOnDoubleClick={false}
+                preventScrolling={false}
                 proOptions={{ hideAttribution: true }}
               >
                 <Background
@@ -473,7 +454,6 @@ export function FramerServices() {
                   size={1}
                   color="rgba(255, 255, 255, 0.05)"
                 />
-                <Controls showInteractive={false} />
               </ReactFlow>
             </div>
           </div>

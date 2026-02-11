@@ -9,7 +9,7 @@ export function FramerFooter() {
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
             <img
-              src="https://framerusercontent.com/images/04vJJZ3D2ponPv6rzLBq6sf2PZU.svg"
+              src="/vibedoctor-complete.svg"
               alt="Logo"
               className="h-8 w-auto"
             />
