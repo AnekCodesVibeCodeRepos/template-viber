@@ -29,8 +29,8 @@ export default function Index() {
       <FramerFounder />
       <FramerBenefits />
       <FramerServices />
-      <FramerProcess />
-      <FramerSuccess />
+      {/* <FramerProcess /> */}
+      {/* <FramerSuccess /> */}
       <FramerIntegrations />
       <FramerPricing />
       <FramerFooter />
