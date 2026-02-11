@@ -1,21 +1,35 @@
 import type { MetaFunction } from "@remix-run/node";
+import { FramerHeader } from "~/components/framer/FramerHeader";
+import { FramerHero } from "~/components/framer/FramerHero";
+import { FramerFounder } from "~/components/framer/FramerFounder";
+import { FramerBenefits } from "~/components/framer/FramerBenefits";
+import { FramerServices } from "~/components/framer/FramerServices";
+import { FramerProcess } from "~/components/framer/FramerProcess";
+import { FramerSuccess } from "~/components/framer/FramerSuccess";
+import { FramerIntegrations } from "~/components/framer/FramerIntegrations";
+import { FramerPricing } from "~/components/framer/FramerPricing";
+import { FramerFooter } from "~/components/framer/FramerFooter";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Welcome - Anek.codes App" },
-    { name: "description", content: "Welcome to your Anek.codes application" },
+    { title: "Landio - AI Agency & Landing Page Template" },
+    { name: "description", content: "Supercharge your startup’s growth with Landio—the ultimate Framer template for AI-powered SaaS businesses." },
   ];
 };
 
 export default function Index() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">
-          Start building your amazing project here!
-        </p>
-      </div>
+    <div className="min-h-screen w-full bg-[#04070d] text-white antialiased">
+      <FramerHeader />
+      <FramerHero />
+      <FramerFounder />
+      <FramerBenefits />
+      <FramerServices />
+      <FramerProcess />
+      <FramerSuccess />
+      <FramerIntegrations />
+      <FramerPricing />
+      <FramerFooter />
     </div>
   );
 }
