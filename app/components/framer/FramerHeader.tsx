@@ -18,9 +18,9 @@ export function FramerHeader() {
         {/* Center Nav - Pill shaped */}
         <nav className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-2 py-1.5 backdrop-blur-md">
           {[
-            { label: "Services", href: "#services" },
-            { label: "Process", href: "#process" },
-            { label: "Pricing", href: "#pricing" },
+            { label: "Services", href: "/#services" },
+            { label: "Process", href: "/#process" },
+            { label: "Pricing", href: "/#pricing" },
             { label: "Blog", href: "/blog" },
             { label: "Contact", href: "/contact" },
           ].map((item) => (
@@ -36,7 +36,7 @@ export function FramerHeader() {
 
         {/* CTA Button */}
         <a
-          href="#pricing"
+          href="/#pricing"
           className="group relative flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-medium text-white/80 backdrop-blur-sm transition-all hover:border-white/20 hover:text-white hover:bg-white/[0.06]"
         >
           <svg className="h-3.5 w-3.5 opacity-80" viewBox="0 0 16.5 16.5" fill="currentColor">
