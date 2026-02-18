@@ -18,9 +18,9 @@ export function FramerFooter() {
           {/* Nav links */}
           <nav className="flex flex-wrap items-center justify-center gap-6">
             {[
-              { label: "Services", href: "/#services" },
-              { label: "Process", href: "/#process" },
-              { label: "Pricing", href: "/#pricing" },
+              { label: "Services", href: "#services" },
+              { label: "Process", href: "#process" },
+              { label: "Pricing", href: "#pricing" },
               { label: "Contact", href: "/contact" },
               { label: "Blog", href: "/blog" },
             ].map((item) => (
