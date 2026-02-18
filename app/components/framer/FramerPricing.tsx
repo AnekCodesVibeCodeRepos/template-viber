@@ -16,6 +16,7 @@ export function FramerPricing() {
 
   const tokenNotes = [
     'Token usage is tracked per model in real time',
+    'Transparent pass-through pricing based on provider rates',
     'No hidden markups on token consumption',
   ];
 
